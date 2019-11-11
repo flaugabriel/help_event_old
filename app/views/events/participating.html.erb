@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Participando</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Criador</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @event_users.each do |event_user| %>
+      <tr>
+        <td><%= event_user.event.user.email %></td>
+        <td><%= event_user.event.description %></td>
+        <td><%= link_to 'Show', event_user.event %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event', new_event_path %>

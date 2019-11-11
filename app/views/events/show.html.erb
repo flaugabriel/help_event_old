@@ -1,0 +1,97 @@
+
+
+<div class="d-flex align-items-center p-5 my-3 text-white-50 bg-purple rounded shadow-lg">
+  <img class="mr-3" src="/docs/4.3/assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">
+  <div class="lh-100">
+    <h1 class="mb-0 text-white lh-100">Evento <%= @event.description %></h1>
+    <small>Criado em <%= @event.created_at %> por <%= @event.user.email %></small>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-10">
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Participantes
+            </button>
+          </h2>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+          <%# <%if @event.user.length > 1%>
+            <%# <% @event.user.each do |user|%>
+            <%# <%= user.email %>
+            <%# <% end %>
+          <%# <% else %>
+            <%# Não convidou ninguém a inda. %>
+          <%# <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+     <i class="fas fa-plus"></i> Item
+    </button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="d-flex align-items-center p-2 my-3 text-white-50 bg-white rounded shadow-lg">
+      <img class="mr-3" src="/docs/4.3/assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">
+      <div class="lh-100">
+        <h1 class="mb-0 text-dark lh-100">Sacola de itens</h1>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="d-flex align-items-center p-2 my-3 bg-white rounded shadow-lg">
+      <div class="lh-100">
+        <h1 class="mb-0 text-success lh-100"><%= number_to_currency_br(@event.total_event(@event.id)) %></h1>
+        <small></small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mx-md-n2">
+  <% @event_items.each do |event_item| %>
+<div class="form-group mt-1 ml-2">
+    <div class="card col px-md-1 bg-white" style="width: 18rem;">
+      <div class="card-header">
+        <span class="badge badge-default text-success float-right m-0"><%= number_to_currency_br(event_item.item.quantities*event_item.item.value)%></span>
+        <h5 class="card-title"><%= event_item.item.description %></h5>
+        <h6 class="card-subtitle mb-1 text-muted">Preço atual: <%= number_to_currency_br(event_item.item.value) %></h6>
+        <p class="card-text">Quantidades: <%= event_item.item.quantities %></p>
+        <p class="card-text">Adicionado por: <%= event_item.item.user.email %></p>
+        <p class="card-text"><%= event_item.item.location %></p>
+        <a href="#" class="card-link btn btn-success"> <i class="fas fa-check"></i> </a>
+
+        <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, event_item, method: :delete,  class:'card-link btn btn-danger' %>
+      </div>
+    </div>
+</div>
+  <% end %>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Buscar por itens</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render 'event_items/form',event_item: @event_item  %>
+      </div>
+    </div>
+  </div>
+</div>

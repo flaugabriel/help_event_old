@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total: 9.99
+  status: false
+  event: one
+  item: one
+
+two:
+  total: 9.99
+  status: false
+  event: two
+  item: two
