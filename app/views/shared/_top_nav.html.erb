@@ -1,38 +1,78 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-  <%# <a class="navbar-brand mr-auto mr-lg-0" href="#">Help Event</a> %>
-  <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<header class="admin-header">
 
-  <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Perfil</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Configurações</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Troca senha</a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-          <input type="text"
-            class="form-control"  placeholder="<%= current_user.email %>" disabled>
-      <%= link_to destroy_user_session_path, :method => 'delete', class: 'btn btn-outline-danger my-2 my-sm-0' do %>
-        <i class="fas fa-power-off"></i> Sair
-      <% end %>
-    </form>
-  </div>
-</nav>
-<div class="nav-scroller bg-white shadow-sm">
-  <nav class="nav nav-underline">
-    <a class="nav-link" href="/invitations">
-      Convites
-      <span class="badge badge-pill text-white-50 bg-danger align-text-bottom">0</span>
-    </a>
-    <a class="nav-link" href="/events">Meus Eventos</a>
-    <a class="nav-link" href="/participating">Participando</a>
-    <a class="nav-link" href="/items">Recursos</a>
-  </nav>
-</div>
+    <a href="#" class="sidebar-toggle" data-toggleclass="sidebar-open" data-target="body"> </a>
+
+    <nav class=" mr-auto my-auto">
+        <ul class="nav align-items-center">
+
+            <li class="nav-item">
+                <a class="nav-link" data-target="#siteSearchModal" data-toggle="modal" href="#">
+                    <i class=" mdi mdi-magnify mdi-24px align-middle"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <nav class=" ml-auto">
+        <ul class="nav align-items-center">
+            <li class="nav-item">
+                <a href="#" class="btn btn-dark" data-toggle="modal" data-target="#demoModal">Switch Demo</a>
+            </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-24px mdi-bell-outline"></i>
+                        <span class="notification-counter"></span>
+                    </a>
+
+                    <div class="dropdown-menu notification-container dropdown-menu-right">
+                        <div class="d-flex p-all-15 bg-white justify-content-between border-bottom ">
+                            <a href="#!" class="mdi mdi-18px mdi-settings text-muted"></a>
+                            <span class="h5 m-0">Notifications</span>
+                            <a href="#!" class="mdi mdi-18px mdi-notification-clear-all text-muted"></a>
+                        </div>
+                        <div class="notification-events bg-gray-300">
+                            <div class="text-overline m-b-5">today</div>
+                            <a href="#" class="d-block m-b-10">
+                                <div class="card">
+                                    <div class="card-body"> <i class="mdi mdi-circle text-success"></i> All systems operational.</div>
+                                </div>
+                            </a>
+                            <a href="#" class="d-block m-b-10">
+                                <div class="card">
+                                    <div class="card-body"> <i class="mdi mdi-upload-multiple "></i> File upload successful.</div>
+                                </div>
+                            </a>
+                            <a href="#" class="d-block m-b-10">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <i class="mdi mdi-cancel text-danger"></i> Your holiday has been denied
+                                    </div>
+                                </div>
+                            </a>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-sm avatar-online">
+                        <span class="avatar-title rounded-circle bg-dark">V</span>
+
+                    </div>
+                </a>
+                <div class="dropdown-menu  dropdown-menu-right">
+                    <a class="dropdown-item" href="#">  Add Account
+                    </a>
+                    <a class="dropdown-item" href="#">  Reset Password</a>
+                    <a class="dropdown-item" href="#">  Help </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#"> Logout</a>
+                </div>
+            </li>
+
+        </ul>
+
+    </nav>
+</header>

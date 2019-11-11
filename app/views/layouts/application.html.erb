@@ -4,35 +4,23 @@
     <title>HelpEvent</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'https://use.fontawesome.com/releases/v5.7.1/css/all.css' %>
-    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/css/perfect-scrollbar.min.css', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/fontawesome.min.css', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css", 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js',  'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.4.0/perfect-scrollbar.min.js', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://code.jquery.com/jquery-3.3.1.slim.min.js',  'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js', 'data-turbolinks-track': 'reload' %>
-
+    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/4.4.95/css/materialdesignicons.min.css','data-turbolinks-track': 'reload'%>
+    <%= stylesheet_link_tag 'application', media: 'all','data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
   </head>
-
-  <body class="bg-body-color">
-    <% if user_signed_in? %>
-      <%= render 'shared/top_nav' %>
-      <%= flash_message %>
-      <main role="main" class="container ">
-        <%= yield %>
-      </main>
-    <% else %>
+  <body class="sidebar-pinned  pace-done">
+    <div class="pace  pace-inactive">
+      <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+        <div class="pace-progress-inner">
+      </div>
+    </div>
+    <div class="pace-activity"></div>
+  </div>
+    <%= render 'shared/nav_bar' %>
+    <main class="admin-main">
+    <%= render 'shared/top_nav' %>
+    <%= flash_message %>
       <%= yield %>
-    <% end %>
+    </main>
   </body>
 </html>

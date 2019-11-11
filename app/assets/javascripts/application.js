@@ -13,7 +13,20 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+//= require plugins/jquery.min
+//= require plugins/jquery-ui.min
+//= require plugins/popper.js
+//= require plugins/bootstrap.min
+//= require plugins/select2.full.min
+//= require plugins/jquery.scrollbar.min
+//= require plugins/listjs.min
+//= require plugins/moment.min
+//= require plugins/daterangerpicker
+//= require plugins/bootstrap-datepicker.min
+//= require plugins/toastr.min
+//= require configs/pace.min
+//= require main/atomos.min
+
 document.addEventListener("turbolinks:load", function () {
   $(document).ready(function () {
     $('.select2').select2();

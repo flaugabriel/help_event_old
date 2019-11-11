@@ -12,14 +12,13 @@ class InvitationsController < ApplicationController
   def accept
     invite = Invitation.find(params[:id])
     if invite.update(accept: true)
-      flash[:success] = "Convite aceito!"
+      flash[:success] = 'Convite aceito!'
       Invitation.new.afte_accept
       redirect_to invitations_path
     else
       flash[:error] = invite.errors.full_messagers.to_sentence
       redirect_to invitations_path
     end
-
   end
 
   # GET /invitations/new
@@ -67,10 +66,8 @@ class InvitationsController < ApplicationController
   # DELETE /invitations/1.json
   def destroy
     @invitation.destroy
-    respond_to do |format|
-      format.html { redirect_to invitations_url, notice: 'Invitation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:success] = 'Convite aceito!'
+    redirect_to invitations_path
   end
 
   private
