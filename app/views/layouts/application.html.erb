@@ -9,6 +9,8 @@
     <%= javascript_include_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body class="sidebar-pinned  pace-done">
+    <%= flash_message %>
+
     <div class="pace  pace-inactive">
       <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
         <div class="pace-progress-inner">
@@ -19,7 +21,6 @@
     <%= render 'shared/nav_bar' %>
     <main class="admin-main">
     <%= render 'shared/top_nav' %>
-    <%= flash_message %>
       <%= yield %>
     </main>
   </body>

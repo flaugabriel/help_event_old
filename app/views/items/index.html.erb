@@ -1,35 +1,47 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Items</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Value</th>
-      <th>Quantidade</th>
-      <th>Location</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.description %></td>
-        <td><%= item.value %></td>
-        <td><%= item.quantities %></td>
-        <td><%= item.location %></td>
-        <td><%= item.user %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Item', new_item_path %>
+<div class="bg-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-white p-t-40 p-b-90">
+        <h4 class="">
+          Itens
+        </h4>
+        <p class="opacity-75 ">
+          Aqui voçê armazena seus itens.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container pull-up">
+  <div class="col-md-12 m-b-30">
+    <div class="table-responsive">
+      <table class="table align-td-middle table-card">
+        <thead class="text-center">
+          <tr>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Local</th>
+            <th>Criador</th>
+            <th>Açoẽs</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.description %></td>
+              <td><%= number_to_currency_br(item.value) %></td>
+              <td><%= item.quantities %></td>
+              <td><%= item.location %></td>
+              <td><%= item.user.email %></td>
+              <td>
+              <%= link_to 'Edit', edit_item_path(item), class:'btn btn-white' %>
+              <%= link_to 'Destroy', item, method: :delete, class:'btn btn-danger'%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

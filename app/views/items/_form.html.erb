@@ -1,26 +1,27 @@
-<%= form_with(model: item, local: true) do |form| %>
+<%= form_with(model: item, local: true, class:'form-dark') do |form| %>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, class:'form-control' %>
+  <div class="form-row">
+    <div class="form-group  col-md-3">
+      <%= form.label :"Descrição" %>
+      <%= form.text_field :description, class:'form-control' %>
+    </div>
+
+    <div class="form-group  col-md-2">
+      <%= form.label :"Preço" %>
+      <%= form.text_field :value, class:'form-control' %>
+    </div>
+
+     <div class="form-group  col-md-2">
+      <%= form.label :"Quantidades" %>
+      <%= form.number_field :quantities, class:'form-control' %>
+    </div>
+
+    <div class="form-group  col-md-3">
+      <%= form.label :"Local de compra" %>
+      <%= form.text_field :location, class:'form-control' %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :value %>
-    <%= form.text_field :value, class:'form-control' %>
-  </div>
-
-   <div class="field">
-    <%= form.label :quantities %>
-    <%= form.number_field :quantities, class:'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location, class:'form-control' %>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Criar item', class:'btn btn-success' %>
   </div>
 <% end %>

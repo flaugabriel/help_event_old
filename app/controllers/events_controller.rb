@@ -36,10 +36,10 @@ class EventsController < ApplicationController
     if @event.save
       Event.new.event_create
       flash[:success] =  "Evento criado!"
-      redirect_to events_path
+      redirect_to root_path
     else
       flash[:error] =  @event.errors.full_messages.to_sentence
-      redirect_to events_path
+      redirect_to root_path
     end
   end
 
@@ -62,8 +62,8 @@ class EventsController < ApplicationController
   def destroy
     Event.new.delete_event(params[:id])
     @event.destroy
-    flash[:success] = "Evento removido"
-    redirect_to redirect_to events_url
+    flash[:error] = "Evento removido"
+    redirect_to root_path
   end
 
   private
