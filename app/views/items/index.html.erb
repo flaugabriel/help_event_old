@@ -35,8 +35,8 @@
               <td><%= item.location %></td>
               <td><%= item.user.email %></td>
               <td>
-              <%= link_to 'Edit', edit_item_path(item), class:'btn btn-white' %>
-              <%= link_to 'Destroy', item, method: :delete, class:'btn btn-danger'%>
+              <%= link_to '<i class="mdi mdi-border-color"></i>'.html_safe, edit_item_path(item), class:'btn btn-white' %>
+              <%= link_to '<i class="mdi mdi-trash-can"></i>'.html_safe, item, method: :delete, class:'btn btn-danger'%>
               </td>
             </tr>
           <% end %>

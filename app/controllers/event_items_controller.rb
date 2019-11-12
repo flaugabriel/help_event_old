@@ -10,6 +10,7 @@ class EventItemsController < ApplicationController
   # GET /event_items/1
   # GET /event_items/1.json
   def show
+    @items = Item.where(user_id: current_user.id)
   end
 
   # GET /event_items/new
@@ -26,14 +27,12 @@ class EventItemsController < ApplicationController
   def create
     @event_item = EventItem.new(event_item_params.merge(status: 1,event_id: params[:event_id]))
 
-    respond_to do |format|
-      if @event_item.save
-        format.html { redirect_to @event_item, notice: 'Event item was successfully created.' }
-        format.json { render :show, status: :created, location: @event_item }
-      else
-        format.html { render :new }
-        format.json { render json: @event_item.errors, status: :unprocessable_entity }
-      end
+    if @event_item.save
+      flash[:success] = 'Item inserido!'
+      redirect_to event_path(@event_item.event.id)
+    else
+      flash[:success] = @event_item.errors.full_messages.to_sentence
+      redirect_to event_path(@event_item.event.id)
     end
   end
 
