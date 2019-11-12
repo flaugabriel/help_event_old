@@ -77,9 +77,13 @@
                   <p class="text-muted fw-600"><%= event_item.item.location %></p>
                   <div class="text-success h5 fw-600">
                   <i class="mdi mdi-arrow-up"></i> <%= number_to_currency_br(event_item.item.value) %>
+                  <hr>
                   <div class="row">
                     <div class="col-md-6">
-
+                        <button class="btn btn-danger">delete</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-success">Coletado</button>
                     </div>
                   </div>
               </div>
