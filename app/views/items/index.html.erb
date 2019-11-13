@@ -20,7 +20,6 @@
           <tr>
             <th>Descrição</th>
             <th>Preço</th>
-            <th>Quantidade</th>
             <th>Local</th>
             <th>Criador</th>
             <th>Açoẽs</th>
@@ -31,7 +30,6 @@
             <tr>
               <td><%= item.description %></td>
               <td><%= number_to_currency_br(item.value) %></td>
-              <td><%= item.quantities %></td>
               <td><%= item.location %></td>
               <td><%= item.user.email %></td>
               <td>

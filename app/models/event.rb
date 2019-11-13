@@ -6,12 +6,6 @@ class Event < ApplicationRecord
     EventItem.where(event_id: event_id)
   end
 
-  def total_event(id)
-    item_ids =  EventItem.where(event_id: id).select(:item_id)
-    items = Item.where(id: item_ids).select(:value, :quantities)
-    total = items.sum(:value) * items.sum(:quantities)
-  end
-
   def delete_event(id)
     event_user = EventUser.where(event_id: id)
     event_user.delete_all

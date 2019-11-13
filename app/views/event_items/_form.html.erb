@@ -1,9 +1,15 @@
 <%= form_with(model: event_item, local: true) do |form| %>
   <%= hidden_field_tag(:event_id, params[:id]) %>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label :item_id %>
+      <%= form.select :item_id, @items.collect { |i| [i.description, i.id] }, class:'from-control select2' %>
+    </div>
 
-  <div class="form-group">
-    <%= form.label :item_id %>
-    <%= form.select :item_id, @items.collect { |i| [i.description, i.id] }, class:'from-control select2' %>
+    <div class="form-group col-md-6">
+      <%= form.label :quantities %>
+      <%= form.text_field :quantities, class:'from-control' %>
+    </div>
   </div>
 
   <div class="form-group">

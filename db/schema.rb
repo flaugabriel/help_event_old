@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2019_11_10_012016) do
 
   create_table "event_items", force: :cascade do |t|
     t.boolean "status"
+    t.integer "quantities"
     t.bigint "event_id"
     t.bigint "item_id"
     t.datetime "created_at", null: false
@@ -57,7 +58,6 @@ ActiveRecord::Schema.define(version: 2019_11_10_012016) do
     t.string "description"
     t.decimal "value"
     t.string "location"
-    t.integer "quantities"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

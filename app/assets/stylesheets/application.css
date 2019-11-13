@@ -21,4 +21,6 @@
  *= require plugins/toastr.min
  *= require fonts/font.css
  *= require main/atoms.min
+ *= require scaffolds
  */
+

@@ -60,7 +60,7 @@
             <h5 class="text-center p-t-10 ">Sacola de itens</h5>
           </div>
           <div class="bg-dark rounded-bottom card-body text-white">
-            <h1 class="text-center text-success"><%= number_to_currency_br(@event.total_event(@event.id)) %></h1>
+            <h1 class="text-center text-success"></h1>
           </div>
         </div>
       </div>
@@ -79,12 +79,13 @@
                   <i class="mdi mdi-arrow-up"></i> <%= number_to_currency_br(event_item.item.value) %>
                   <hr>
                   <div class="row">
-                    <div class="col-md-6">
-                        <button class="btn btn-danger">delete</button>
+                  <div class="col-md-6">
+                        <button class="btn btn-success"><i class="mdi mdi-check-outline"></i></button>
                     </div>
                     <div class="col-md-6">
-                        <button class="btn btn-success">Coletado</button>
+                    <%= link_to '<i class="mdi mdi-trash-can"></i>'.html_safe, events_path(event_item.event.id), method: :delete, class:'btn btn-danger'%>
                     </div>
+
                   </div>
               </div>
             </div>
@@ -93,5 +94,36 @@
       </div>
     </div>
    <% end %>
+  </div>
+</div>
+
+<div class="modal fade modal-slide-right" id="slideRightModal" tabindex="-1" role="dialog" aria-labelledby="slideRightModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="slideRightModalLabel">Participantes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table align-td-middle table-card">
+          <tbody>
+            <tr>
+              <td>
+                <div class="avatar avatar-sm ">
+                <i class="mdi mdi-account  mdi-48px"></i>
+                </div>
+              </td>
+              <td>Brielle Williamson</td>
+              <td>Integration Specialist</td>
+              <td>New York</td>
+              <td>61</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
   </div>
 </div>

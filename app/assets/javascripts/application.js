@@ -26,10 +26,16 @@
 //= require plugins/toastr.min
 //= require configs/pace.min
 //= require main/atomos.min
+//= require plugins/jquery.maskMoney.min
+
 
 document.addEventListener("turbolinks:load", function () {
   $(document).ready(function () {
     $('.select2').select2();
+    $('.money').mask('000.000.000.000.000,00', {
+      prefix: 'R$',
+      reverse: true
+    });
   });
 });
 
