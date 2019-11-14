@@ -32,7 +32,7 @@ class EventItemsController < ApplicationController
       redirect_to event_path(@event_item.event.id)
     else
       flash[:error] = @event_item.errors.full_messages.to_sentence
-      redirect_to event_path(params[:event_id])
+      redirect_to event_path(@event_item.event.id)
     end
   end
 

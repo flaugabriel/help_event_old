@@ -10,11 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require plugins/jquery.min
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require plugins/jquery.min
-//= require plugins/jquery-ui.min
 //= require plugins/popper.js
 //= require plugins/bootstrap.min
 //= require plugins/select2.full.min
@@ -26,17 +25,22 @@
 //= require plugins/toastr.min
 //= require configs/pace.min
 //= require main/atomos.min
+//= require plugins/jquery-ui.min
 //= require plugins/jquery.maskMoney.min
 
 
 document.addEventListener("turbolinks:load", function () {
   $(document).ready(function () {
     $('.select2').select2();
-    $('.money').mask('000.000.000.000.000,00', {
-      prefix: 'R$',
-      reverse: true
-    });
+     $(".money").maskMoney({
+       prefix: "R$: ",
+       decimal: ",",
+       thousands: "."
+     });
+
     $(".js-datepicker").datepicker();
+    $('.dropdown-toggle').dropdown();
+    $('.nav-link').dropdown();
   });
 });
 

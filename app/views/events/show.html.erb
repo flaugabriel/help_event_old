@@ -1,22 +1,5 @@
 
 
- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered" role="document">
-     <div class="modal-content">
-       <div class="modal-header">
-         <h5 class="modal-title" id="exampleModalCenterTitle">Buscar por itens</h5>
-         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-         </button>
-       </div>
-       <div class="modal-body">
-         <%= render 'event_items/form',event_item: @event_item  %>
-       </div>
-     </div>
-   </div>
- </div>
- </div>
-</section>
 
 <div class=" bg-dark m-b-30 bg-stars">
  <div class="container">
@@ -34,10 +17,9 @@
               <button type="button" class="btn btn-lg m-b-15 ml-2 mr-2 btn-primary" data-toggle="modal" data-target="#slideRightModal">
                 Participantes
               </button>
-              <button type="button" class="btn btn-lg m-b-15 ml-2 mr-2  btn-white" data-toggle="modal" data-target="#exampleModalCenter">
+               <button type="button" class="btn btn-lg m-b-15 ml-2 mr-2  btn-white" data-toggle="modal" data-target="#new-item-event">
                 <i class="mdi mdi-plus"></i> Item
               </button>
-            </p>
           </div>
         </div>
       </div>
@@ -46,6 +28,8 @@
 </div>
 
 <div class="container pull-up">
+
+
   <div class="row mx-md-n2">
   <% @event_items.each do |event_item| %>
     <div class="col-lg-3 col-md-6 m-b-30">
@@ -96,6 +80,43 @@
       </div>
     </div>
    <% end %>
+  </div>
+</div>
+
+
+<div class="modal fade modal-slide-right" id="new-item-event" tabindex="-1" role="dialog" aria-labelledby="slideRightModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="slideRightModalLabel">Novo item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row m-b-90">
+          <% @items.each do |item|%>
+           <div class="col-lg-6 col-md-10">
+            <div class="card">
+              <%= form_with(model: @event_item, local: true) do |form| %>
+                <%= form.hidden_field(:event_id, value: params[:id])%>
+                <%= form.hidden_field(:item_id , value: item.id)%>
+                  <div class="card-body text-dark">
+                    <h4 class="card-title"><%= item.description %></h4>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><%= form.text_field :quantities, class:'form-control form-control-lg', placeholder: 'Quantidade' %></li>
+                  </ul>
+                  <div class="card shadow-lg">
+                    <%= form.button '<i class="mdi mdi-plus"></i>'.html_safe,  class:'btn btn-success ' %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

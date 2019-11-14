@@ -1,12 +1,15 @@
-<div class=" bg-dark m-b-30 ">
+<div class="m-b-30 ">
     <div class="container">
         <div class="row">
-            <div class="col-8 m-auto text-white p-t-40 p-b-90">
-                <h1 class="fw-300 text-center">Todos os Eventos
+            <div class="col-8 m-auto text-dark p-t-40 p-b-90">
                 </h1>
-                <p class="p-t-30 form-dark">
-                    <input type="search" placeholder="Busque por eventos" class=" form-control form-control-lg">
-                </p>
+                <div class="card">
+                  <div class="form-group col-12">
+                    <p class="p-t-30 form-dark ">
+                        <input type="search" placeholder="Busque por eventos" class=" form-control text-dark form-control-lg">
+                    </p>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -24,7 +27,14 @@
             <li class="list-group-item">Itens: <%= all_event.event.select_item_by_events(all_event.event.id).count%></li>
             <li class="list-group-item">Criação: <%= all_event.created_at %></li>
             <li class="list-group-item">
-            <div class="text-success h3 text-center"><%= number_to_currency_br(all_event.event.total)%>
+            <div class="text-success h3 text-center">
+
+            <% if all_event.event.total.present?  %>
+              <%= number_to_currency_br(all_event.event.total)%>
+            <% else %>
+            R$ 00,00
+            <% end %>
+
             </div></li>
           </ul>
         <% end %>

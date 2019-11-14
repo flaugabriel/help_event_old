@@ -15,5 +15,7 @@ module ApplicationHelper
     notification.html_safe
   end
 
-
+  def notifications(user_id)
+    Invitation.where(user_id: user_id).take
+  end
 end
