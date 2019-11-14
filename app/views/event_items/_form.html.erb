@@ -1,18 +1,17 @@
 <%= form_with(model: event_item, local: true) do |form| %>
-  <%= hidden_field_tag(:event_id, params[:id]) %>
-  <div class="row">
-    <div class="form-group col-md-6">
-      <%= form.label :item_id %>
-      <%= form.select :item_id, @items.collect { |i| [i.description, i.id] }, class:'from-control select2' %>
+  <%= form.hidden_field(:event_id, value: params[:id]) %>
+
+    <div class="col-12 form-group">
+      <label>Item</label>
+      <%= form.select :item_id, @items.collect { |i| [i.description, i.id] }, {include_blank: "Selecione o item "}, :class => 'form-control form-control-lg select2'%>
     </div>
 
-    <div class="form-group col-md-6">
-      <%= form.label :quantities %>
-      <%= form.text_field :quantities, class:'from-control' %>
+    <div class="col-6 form-group">
+      <label>Quantidade</label>
+      <%= form.text_field :quantities, class:'form-control form-control-lg' %>
     </div>
-  </div>
 
-  <div class="form-group">
+  <div class="col-12 form-group">
     <%= form.submit 'Adicionar', class:'btn btn-success' %>
   </div>
 <% end %>

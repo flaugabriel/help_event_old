@@ -7,7 +7,7 @@ class Event < ApplicationRecord
   end
 
   def delete_event(id)
-    event_user = EventUser.where(event_id: id)
+    event_user = EventItem.where(event_id: id)
     event_user.delete_all
   end
 

@@ -36,6 +36,7 @@ document.addEventListener("turbolinks:load", function () {
       prefix: 'R$',
       reverse: true
     });
+    $(".js-datepicker").datepicker();
   });
 });
 

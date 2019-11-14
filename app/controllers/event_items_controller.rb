@@ -25,14 +25,14 @@ class EventItemsController < ApplicationController
   # POST /event_items
   # POST /event_items.json
   def create
-    @event_item = EventItem.new(event_item_params.merge(status: 1,event_id: params[:event_id]))
-
+    @event_item = EventItem.new(event_item_params.merge(status: false))
     if @event_item.save
+      EventItem.new.make_current_total(@event_item.event.id)
       flash[:success] = 'Item inserido!'
       redirect_to event_path(@event_item.event.id)
     else
-      flash[:success] = @event_item.errors.full_messages.to_sentence
-      redirect_to event_path(@event_item.event.id)
+      flash[:error] = @event_item.errors.full_messages.to_sentence
+      redirect_to event_path(params[:event_id])
     end
   end
 
@@ -53,11 +53,10 @@ class EventItemsController < ApplicationController
   # DELETE /event_items/1
   # DELETE /event_items/1.json
   def destroy
+    EventItem.new.decrement_current_total(params[:id])
     @event_item.destroy
-    respond_to do |format|
-      format.html { redirect_to event_items_url, notice: 'Event item was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    flash[:success] = 'Item removido!'
+    redirect_to event_path(@event_item.event.id)
   end
 
   private
@@ -68,6 +67,6 @@ class EventItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_item_params
-      params.require(:event_item).permit(:total, :status, :event_id, :item_id)
+      params.require(:event_item).permit(:total, :status, :event_id, :item_id, :quantities)
     end
 end

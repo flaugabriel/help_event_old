@@ -37,14 +37,12 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
-    respond_to do |format|
-      if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
-      else
-        format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    if @item.update(item_params)
+      flash[:success] = 'Item atualizado!'
+      redirect_to items_path
+    else
+      flash[:error] = @item.errors.full_messagers.to_sentence
+      redirect_to items_path
     end
   end
 
