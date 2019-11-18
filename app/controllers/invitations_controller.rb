@@ -4,7 +4,13 @@ class InvitationsController < ApplicationController
   # GET /invitations
   # GET /invitations.json
   def index
-    @invitations = Invitation.all
+    @invitations = Invitation.where(user_id: current_user.id)
+  end
+
+  def viewed_invitation
+    @invitation = Invitation.find(params[:id])
+    @invitation.update(viewed: true)
+    redirect_to invitations_path
   end
 
   # GET /invitations/1
@@ -35,7 +41,7 @@ class InvitationsController < ApplicationController
   # POST /invitations
   # POST /invitations.json
   def create
-    @invitation = Invitation.new(invitation_params)
+    @invitation = Invitation.new(invitation_params.merge(viewed: false))
 
     respond_to do |format|
       if @invitation.save

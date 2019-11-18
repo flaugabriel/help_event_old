@@ -27,9 +27,13 @@
                         <div class="notification-events bg-gray-300">
                             <div class="text-overline m-b-5">Convites</div>
                             <% notifications(current_user.id).each do |envities|%>
-                                <div class="card">
-                                    <div class="card-body"> <i class="mdi mdi-circle text-success"></i> All systems operational.</div>
-                                </div>
+                                <%= link_to  viewed_invitation_path(envities.id) do%>
+                                    <div class="card mt-4">
+                                        <div class="card-body">
+                                                <i class="mdi mdi-circle text-success"></i> Convite de <%= envities.event.user.email %> recebido em <%= envities.created_at%>.
+                                            </div>
+                                        </div>
+                                    <% end %>
                                 <% end %>
                             </div>
                         </div>
@@ -50,7 +54,9 @@
                     <a class="dropdown-item" href="#">  Reset Password</a>
                     <a class="dropdown-item" href="#">  Help </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"> Logout</a>
+                      <%= link_to destroy_user_session_path, :method => 'delete', class: 'dropdown-item' do %>
+                       Sair
+                    <% end %>
                 </div>
             </li>
 

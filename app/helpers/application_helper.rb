@@ -16,6 +16,6 @@ module ApplicationHelper
   end
 
   def notifications(user_id)
-    Invitation.where(user_id: user_id).take
+    Invitation.where(user_id: user_id,viewed: false)
   end
 end

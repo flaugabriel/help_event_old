@@ -83,7 +83,7 @@
   </div>
 </div>
 
-
+<%# #card_bar_item %>
 <div class="modal fade modal-slide-right" id="new-item-event" tabindex="-1" role="dialog" aria-labelledby="slideRightModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -96,13 +96,16 @@
       <div class="modal-body">
         <div class="row m-b-90">
           <% @items.each do |item|%>
-           <div class="col-lg-6 col-md-10">
-            <div class="card">
+           <div class="col-lg-6 col-md-10  ">
+            <div class="card mt-3">
               <%= form_with(model: @event_item, local: true) do |form| %>
                 <%= form.hidden_field(:event_id, value: params[:id])%>
                 <%= form.hidden_field(:item_id , value: item.id)%>
                   <div class="card-body text-dark">
                     <h4 class="card-title"><%= item.description %></h4>
+                  </div>
+                  <div class="card-body text-success">
+                    <h4 class="card-title text-center"><%= number_to_currency_br(item.value) %></h4>
                   </div>
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item"><%= form.text_field :quantities, class:'form-control form-control-lg', placeholder: 'Quantidade' %></li>

@@ -1,35 +1,70 @@
-<p id="notice"><%= notice %></p>
+<section class="admin-content " id="contact-search">
+  <div class="bg-dark m-b-30">
+    <div class="container">
+      <div class="row p-b-60 p-t-60">
 
-<h1>Invitations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Convidado</th>
-      <th>Evento</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @invitations.each do |invitation| %>
-      <tr>
-        <td><%= invitation.user.email %></td>
-        <td><%= invitation.event.description %></td>
-        <td>
-        <%= invitation.accept %>
-        </td>
-        <td>
-        <% if invitation.user.id == current_user.id %>
-        <%= link_to 'Acceitar', accept_invities_path(invitation.id)%>
-        <%= link_to 'Ignora', invitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <div class="col-md-6 text-center mx-auto text-white p-b-30">
+          <h1>Convites </h1>
+          <div class="form-dark">
+            <div class="input-group input-group-flush mb-3">
+              <input placeholder="Busque por convites" type="search"
+                class="form-control form-control-lg search form-control-prepended">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="mdi mdi-magnify"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="pull-up">
+    <div class="container">
+      <div class="row list">
+      <% @invitations.each do |invitation|%>
+        <div class="col-lg-4 col-md-6">
+          <div class="card m-b-30">
+            <div class="card-header">
+              <div class="card-controls">
+                <a class="badge badge-soft-info searchBy-name">Data do evento <%= invitation.event.created_at%></a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="text-center">
+                <h3 class="p-t-10 ">
+                   Quero te convida para este evento, <%= invitation.event.description%>
+                </h3>
+              </div>
+              <p class="text-muted text-center">
+                 <%= invitation.accept%>
+              </p>
+              <% if invitation.user.id == current_user.id %>
+              <div class="row text-center p-b-10">
+                <div class="col">
+                   <%= link_to  accept_invities_path(invitation.id) do %>
+                   <h3 class="mdi mdi-check-outline"></h3>
+                    <div class="text-overline">
+                      Aceitar
+                    </div>
+                  <% end %>
+                </div>
+                <div class="col">
+                <%= link_to  invitation, method: :delete do %>
+                  <h3 class="mdi mdi-trash-can-outline"></h3>
+                  <div class="text-overline">
+                    Ignora
+                  </div>
+                <% end %>
+                <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Invitation', new_invitation_path %>
+      </div>
+    </div>
+  </section>
+</section>
