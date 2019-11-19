@@ -20,27 +20,50 @@
 //= require plugins/jquery.scrollbar.min
 //= require plugins/listjs.min
 //= require plugins/moment.min
-//= require plugins/daterangerpicker
-//= require plugins/bootstrap-datepicker.min
 //= require plugins/toastr.min
 //= require configs/pace.min
 //= require main/atomos.min
 //= require plugins/jquery-ui.min
 //= require plugins/jquery.maskMoney.min
-
+//= require plugins/bootstrap-datepicker.min
+//= require plugins/bootstrap-datepicker.pt-BR.min
+//= require plugins/bootstrap-datetimepicker.min
+//= require plugins/bootstrap-datetimepicker.pt-BR.min
+//= require plugins/we_avatar
 
 document.addEventListener("turbolinks:load", function () {
   $(document).ready(function () {
     $('.select2').select2();
+    $('.nav-link').dropdown();
+      $("#imgInp").change(function () {
+        readURL(this);
+      });
      $(".money").maskMoney({
        prefix: "R$: ",
        decimal: ",",
        thousands: "."
      });
-
-    $(".js-datepicker").datepicker();
     $('.dropdown-toggle').dropdown();
-    $('.nav-link').dropdown();
+
+    $('.datetime').datepicker({
+      format: 'dd/mm/yyyy',
+      language: 'pt-BR',
+      todayHighlight: true,
+      autoclose: true,
+      showOptions: {
+        direction: "down"
+      }
+});
+
+    $('.timedate').datetimepicker({
+      format: 'dd/mm/yyyy hh:ii',
+      language: 'pt-BR',
+      todayHighlight: true,
+      autoclose: true,
+      showOptions: {
+        direction: "down"
+      }
+    });
   });
 });
 
@@ -62,3 +85,16 @@ toastr.options = {
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"
 }
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $('#blah').attr('src', e.target.result);
+    }
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+

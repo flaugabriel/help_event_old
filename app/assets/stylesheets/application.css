@@ -12,15 +12,15 @@
  *
  *= require_self
  *= require configs/pace.min
- *= require plugins/bootstrap-datepicker.min
  *= require plugins/jquery-scrollbar
  *= require plugins/select2.min
  *= require plugins/jquery-ui.min
- *= require plugins/daterangerpicker
- *= require plugins/bootstrap-timepicker.min
+ *= require plugins/bootstrap-datepicker.min
+ *= require plugins/bootstrap-datetimepicker.min
  *= require plugins/toastr.min
  *= require fonts/font.css
  *= require main/atoms.min
+ *= require scaffolds
  *= require scaffolds
  */
 

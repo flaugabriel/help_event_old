@@ -1,6 +1,14 @@
 class Event < ApplicationRecord
   belongs_to :user
 
+  validate :verifi_name
+
+  def verifi_name
+    namepresent = User.find(user_id)
+    return if namepresent.name.present?
+
+    errors.add(:base, ' Voçê precisa inserir um apelido antes.')
+  end
 
   def select_item_by_events(event_id)
     EventItem.where(event_id: event_id)
@@ -19,7 +27,7 @@ class Event < ApplicationRecord
     if user_events.present?
       return true
     else
-      EventUser.create(event_id: t.id,user_id: t.user_id)
+      EventUser.create(event_id: t.id, user_id: t.user_id)
     end
   end
 end

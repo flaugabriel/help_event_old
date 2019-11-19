@@ -20,51 +20,22 @@
       </div>
     </div>
   </div>
-  <section class="pull-up">
-    <div class="container">
-      <div class="row list">
+    <div class="container pull-up">
+      <div class="row  m-b-90">
       <% @invitations.each do |invitation|%>
-        <div class="col-lg-4 col-md-6">
-          <div class="card m-b-30">
-            <div class="card-header">
-              <div class="card-controls">
-                <a class="badge badge-soft-info searchBy-name">Data do evento <%= invitation.event.created_at%></a>
-              </div>
+        <div class="col-lg-4 ">
+        <%= link_to  invitation_path(invitation.id), class:'card shadow-lg guide-event ' do%>
+          <div class="card-body text-dark">
+            <h4 class="card-title">
+                <%= invitation.event.user.name %> quer convida voçê para este evento, <%= invitation.event.description%>
+            </h4>
+            <p>Data do evento: <%= invitation.event.data_event%>
+          </div>
+            <% end %>
             </div>
-            <div class="card-body">
-              <div class="text-center">
-                <h3 class="p-t-10 ">
-                   Quero te convida para este evento, <%= invitation.event.description%>
-                </h3>
-              </div>
-              <p class="text-muted text-center">
-                 <%= invitation.accept%>
-              </p>
-              <% if invitation.user.id == current_user.id %>
-              <div class="row text-center p-b-10">
-                <div class="col">
-                   <%= link_to  accept_invities_path(invitation.id) do %>
-                   <h3 class="mdi mdi-check-outline"></h3>
-                    <div class="text-overline">
-                      Aceitar
-                    </div>
-                  <% end %>
-                </div>
-                <div class="col">
-                <%= link_to  invitation, method: :delete do %>
-                  <h3 class="mdi mdi-trash-can-outline"></h3>
-                  <div class="text-overline">
-                    Ignora
-                  </div>
-                <% end %>
-                <% end %>
-                </div>
-              </div>
-            </div>
+          <% end %>
           </div>
         </div>
-        <% end %>
       </div>
     </div>
-  </section>
 </section>

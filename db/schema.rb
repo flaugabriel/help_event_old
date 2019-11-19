@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_11_10_012016) do
   create_table "events", force: :cascade do |t|
     t.string "description"
     t.decimal "total"
+    t.datetime "data_event"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"

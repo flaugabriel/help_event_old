@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   resources :items
   resources :events
   devise_for :users
-  get 'accept/invitation/:id', to:'invitations#accept', as: 'accept_invities'
+
+  get 'configs', to: 'user#configs', as: 'user_configs'
+  patch 'configs', to: 'user#upload_avatar'
+  get 'accept/invitation/:id', to: 'invitations#accept', as: 'accept_invities'
   get 'participating', to: 'events#participating', as: 'participating'
   get 'viewed_invitation/:id', to: 'invitations#viewed_invitation', as: 'viewed_invitation'
 

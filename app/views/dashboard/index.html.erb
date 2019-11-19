@@ -24,6 +24,7 @@
             <h4 class="card-title"><%= all_event.event.description%></h4>
           </div>
           <ul class="list-group list-group-flush">
+            <li class="list-group-item">Dia: <%= all_event.event.data_event%></li>
             <li class="list-group-item">Itens: <%= all_event.event.select_item_by_events(all_event.event.id).count%></li>
             <li class="list-group-item">Criação: <%= all_event.created_at %></li>
             <li class="list-group-item">

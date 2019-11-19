@@ -2620,7 +2620,11 @@
  fieldset:disabled a.btn {
         pointer-events: none
  }
-
+ .btn-event {
+        color: #fff;
+        border-color: #fbad3b;
+        background-color: #fbad3b;
+ }
  .btn-primary {
         color: #fff;
         border-color: #4c66fb;

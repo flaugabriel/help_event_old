@@ -7,12 +7,6 @@ class InvitationsController < ApplicationController
     @invitations = Invitation.where(user_id: current_user.id)
   end
 
-  def viewed_invitation
-    @invitation = Invitation.find(params[:id])
-    @invitation.update(viewed: true)
-    redirect_to invitations_path
-  end
-
   # GET /invitations/1
   # GET /invitations/1.json
   def accept
@@ -25,6 +19,11 @@ class InvitationsController < ApplicationController
       flash[:error] = invite.errors.full_messagers.to_sentence
       redirect_to invitations_path
     end
+  end
+
+  def show
+    @invitation_envites_users = Invitation.new.select_users_by_events(params[:id])
+    Invitation.new.viewed_invitation(params[:id])
   end
 
   # GET /invitations/new
