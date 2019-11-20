@@ -1,0 +1,91 @@
+<section class="admin-content">
+    <div class="bg-event bg-dots m-b-30">
+      <div class="container">
+        <div class="row p-b-60 p-t-60">
+          <div class="col-lg-8 text-center mx-auto text-white p-b-30">
+            <div class="m-b-10">
+              <div class="avatar avatar-lg">
+                <div class="avatar-title bg-info rounded-circle mdi mdi-settings ">
+                </div>
+              </div>
+              <h3>Configuração de usuário</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <section class="pull-up">
+    <div class="container">
+      <div class="container">
+        <div class="col-lg-8 mx-auto mt-2">
+          <div class="card py-3 m-b-30">
+            <div class="card-body">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <h3>Informações pessoais</h3>
+            <p>Use esta pagina para atualizar suas informações de contato e trocar de senha.</p>
+            <div class="text-center">
+            <label class="avatar-input">
+              <span class="avatar avatar-xxl">
+              <% if resource.avatar.attached? %>
+                <%= image_tag resource.avatar.variant(resize: "250x250!"),class:'avatar-img rounded-circle' %>
+                <% else %>
+                <%= image_tag 'https://i.pinimg.com/originals/fd/0c/55/fd0c559856ca991e9e28937dc802f0b0.png',class:'avatar-img rounded-circle' %>
+                <% end %>
+                <span class="avatar-input-icon rounded-circle">
+                  <i class="mdi mdi-upload mdi-24px"></i>
+                </span>
+              </span>
+              <%= f.file_field :avatar, class:'avatar-file-picker' %>
+            </label>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <%= f.label :email %>
+                  <%= f.email_field :email, autofocus: true,  class:'form-control' %>
+                </div>
+                  <div class="form-group col-md-6">
+                  <%= f.label :"Apelido" %>
+                  <%= f.text_field :name, autofocus: true,  class:'form-control' %>
+                </div>
+            </div>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Atualmente aguardando confirmação para: <%= resource.unconfirmed_email %></div>
+            <% end %>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <%= f.label :password %> <i>(deixe em branco se não quiser alterá-lo)</i><br />
+                <%= f.password_field :password,  class:'form-control'%>
+                <% if @minimum_password_length %>
+                <% end %>
+              </div>
+              <div class="form-group col-md-6">
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation,  class:'form-control' %>
+              </div>
+            </div>
+
+           <div class="form-row">
+                <div class="form-group col-md-12">
+              <%= f.label :current_password %> <i>(precisamos da sua senha atual para confirmar suas alterações de email e apelido)</i><br />
+              <%= f.password_field :current_password, autocomplete: "current-password", class:'form-control' %>
+            </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.submit "Atualizar", class:'btn btn-success btn-cta' %>
+            </div>
+            <% end %>
+
+            <h3>Cancelar minha conta</h3>
+
+            <p>Infeliz? <%= button_to "Sim, cancelar", registration_path(resource_name), data: { confirm: "Voçê tem certeza" }, method: :delete, class:'btn btn-danger btn-cta' %></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+

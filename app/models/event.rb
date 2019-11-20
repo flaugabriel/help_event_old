@@ -1,6 +1,9 @@
 class Event < ApplicationRecord
   belongs_to :user
 
+  validates_presence_of :data_event
+  validates_presence_of :description
+
   validate :verifi_name
 
   def verifi_name
@@ -8,6 +11,21 @@ class Event < ApplicationRecord
     return if namepresent.name.present?
 
     errors.add(:base, ' Voçê precisa inserir um apelido antes.')
+  end
+
+  def select_not_add_item(user_id,event_id)
+    item_ids = Item.where(user_id: user_id).select(:id)
+    event_item_ids = EventItem.where(event_id: event_id).select(:item_id)
+    array_item = []
+    item_ids.each do |item|
+      event_item_ids.each do |event_item|
+        if item.id == event_item.id
+        else
+          array_item.push(item)
+        end
+      end
+    end
+    byebug
   end
 
   def select_item_by_events(event_id)

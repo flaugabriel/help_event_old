@@ -36,6 +36,7 @@ pt-BR:
 
       event:
         description: Descrição
+        data_event: Data do evento
 
       resource_event:
         total: Total

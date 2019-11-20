@@ -29,7 +29,6 @@
 //= require plugins/bootstrap-datepicker.pt-BR.min
 //= require plugins/bootstrap-datetimepicker.min
 //= require plugins/bootstrap-datetimepicker.pt-BR.min
-//= require plugins/we_avatar
 
 document.addEventListener("turbolinks:load", function () {
   $(document).ready(function () {

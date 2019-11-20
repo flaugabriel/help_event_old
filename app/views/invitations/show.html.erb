@@ -97,7 +97,7 @@
       <div class="modal-body">
         <table class="table align-td-middle table-card">
           <tbody>
-          <% @invitation_envites_users.each do |event_user|%>
+          <% @invitation.select_users_by_events(@invitation.event.id).each do |event_user|%>
             <tr>
               <td>
                 <div class="avatar avatar-sm ">
