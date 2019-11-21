@@ -19,8 +19,18 @@ class EventItemsController < ApplicationController
   end
 
   # GET /event_items/1/edit
-  def edit
+  def charge_status
+    @event_item = EventItem.where(id: params[:id], item_id: params[:item_id]).take
+    if @event_item.update(status: true)
+      flash[:success] = 'item comprado!'
+      redirect_to event_path(@event_item.event.id)
+    else
+      flash[:error] = @event_item.errors.full_messages.to_sentence
+      redirect_to event_path(@event_item.event.id)
+    end
   end
+
+
 
   # POST /event_items
   # POST /event_items.json

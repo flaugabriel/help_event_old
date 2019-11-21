@@ -5,6 +5,9 @@ class InvitationsController < ApplicationController
   # GET /invitations.json
   def index
     @invitations = Invitation.where(user_id: current_user.id)
+    @events = Event.where(user_id: current_user.id)
+    @users = User.all
+    @invitation = Invitation.new
   end
 
   # GET /invitations/1
@@ -16,7 +19,7 @@ class InvitationsController < ApplicationController
       Invitation.new.afte_accept
       redirect_to invitations_path
     else
-      flash[:error] = invite.errors.full_messagers.to_sentence
+      flash[:error] = invite.errors.full_messages.to_sentence
       redirect_to invitations_path
     end
   end
@@ -28,9 +31,7 @@ class InvitationsController < ApplicationController
 
   # GET /invitations/new
   def new
-    @events = Event.where(user_id: current_user.id)
-    @users = User.all
-    @invitation = Invitation.new
+
   end
 
   # GET /invitations/1/edit
@@ -41,15 +42,12 @@ class InvitationsController < ApplicationController
   # POST /invitations.json
   def create
     @invitation = Invitation.new(invitation_params.merge(viewed: false))
-
-    respond_to do |format|
-      if @invitation.save
-        format.html { redirect_to @invitation, notice: 'Invitation was successfully created.' }
-        format.json { render :show, status: :created, location: @invitation }
-      else
-        format.html { render :new }
-        format.json { render json: @invitation.errors, status: :unprocessable_entity }
-      end
+    if @invitation.save
+      flash[:success] = 'Convite enviado'
+      redirect_to invitations_path
+    else
+      flash[:error] = @invitation.errors.full_messages.to_sentence
+      redirect_to invitations_path
     end
   end
 

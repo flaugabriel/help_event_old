@@ -1,15 +1,26 @@
 <%= form_with(model: invitation, local: true) do |form| %>
+<div class="form-group">
+  <div class="input-group input-group-flush mb-3">
+    <%= form.select :user_id, @users.collect { |u| [u.email, u.id] }, {:prompt => 'Selecione o convidado'},class:'form-control form-control-prepended select2'%>
+     <div class="input-group-prepend">
+      <div class="input-group-text">
+        <span class=" mdi mdi-account "></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group input-group-flush mb-4">
+    <%= form.select :event_id, @events.collect { |e| [e.description, e.id] },  {:prompt => 'Selecione o evento'},class:'form-control form-control-prepended select2' %>
+      <div class="input-group-prepend">
+        <div class="input-group-text">
+          <span class="mdi mdi-diamond-stone"></span>
+        </div>
+      </div>
+  </div>
+
   <div class="form-group">
-    <%= form.label :user_id %>
-    <%= form.select :user_id, @users.collect { |u| [u.email, u.id] }, html:{class:'from-control select2'} %>
+    <%= form.submit 'Enviar', class:'btn text-uppercase btn-block  btn-primary' %>
   </div>
-
-  <div class="field">
-    <%= form.label :event_id %>
-    <%= form.select :event_id, @events.collect { |e| [e.description, e.id] }, html:{class:'from-control select2'} %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+</div>
 <% end %>
+

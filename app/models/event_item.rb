@@ -3,6 +3,14 @@ class EventItem < ApplicationRecord
   belongs_to :item
   validates_presence_of :quantities
 
+  validate :verifi_item_exist_on_event, on: :create
+
+  def verifi_item_exist_on_event
+    item = EventItem.where(item_id: item_id, event_id: event_id).present?
+    return if item == false
+
+    errors.add(:Item, ' já existente no evento!')
+  end
 
   def make_current_total(event_id)
     value_items = []

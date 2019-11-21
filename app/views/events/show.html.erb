@@ -7,7 +7,7 @@
       <div class="col-md-8 m-auto text-dark p-t-40 p-b-90">
         <h1><span class="js-greeting">Evento</span>, <%= @event.description %>.</h1>
         <p class="opacity-75">
-         Criado em <%= @event.created_at %> por <%= @event.user.email %>
+         Criado em <%= @event.created_at %> por <%= @event.user.name %>
         </p>
          <p class="opacity-75">
          Dia do evento <%= @event.data_event %>
@@ -64,17 +64,19 @@
                 <%= number_to_currency_br(event_item.item.value*event_item.quantities) %>
                 <br>
                 <br>
+                <% if event_item.status %>
+                <% else %>
                 <div class="row">
-                <div class="col-md-6">
-                      <button class="btn btn-lg m-b-15 ml-2 mr-2 btn-success"><i class="mdi mdi-cart-plus"></i></button>
+                  <div class="col-md-6">
+                    <%= link_to '<i class="mdi mdi-cart-plus"></i>'.html_safe, charge_status_path(event_item,item_id: event_item.item.id), method: :patch, class:'btn btn-lg m-b-15 ml-2 mr-2 btn-success' %>
                   </div>
                   <div class="col-md-6">
                   <%= link_to '<i class="mdi mdi-trash-can"></i>'.html_safe, event_item_path(event_item.id), method: :delete, class:'btn btn-lg m-b-15 ml-2 mr-2 btn-danger'%>
                   </div>
                 </div>
+                 <% end %>
                 <div class="h6 fw-500">
-                <br>
-                <p class="text-muted fw-600"><%= event_item.item.user.email %></p>
+                <p class="text-muted fw-600"><%= event_item.item.user.name %></p>
                 </div>
               </div>
             </div>
@@ -99,9 +101,9 @@
       <div class="modal-body">
         <div class="row m-b-90">
           <% @items.each do |item|%>
-           <div class="col-lg-6 col-md-10  ">
-            <div class="card mt-3">
+           <div class="col-lg-6 col-md-10">
               <%= form_with(model: @event_item, local: true) do |form| %>
+                <div class="card mt-3">
                 <%= form.hidden_field(:event_id, value: params[:id])%>
                 <%= form.hidden_field(:item_id , value: item.id)%>
                   <div class="card-body text-dark">
@@ -113,11 +115,11 @@
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item"><%= form.text_field :quantities, class:'form-control form-control-lg', placeholder: 'Quantidade' %></li>
                   </ul>
-                  <div class="card shadow-lg">
-                    <%= form.button '<i class="mdi mdi-plus"></i>'.html_safe,  class:'btn btn-success ' %>
+                </div>
+                  <div class="text-center">
+                    <%= form.button '<i class="mdi mdi-plus"></i>'.html_safe,  class:'btn btn-success col-md-12' %>
                   </div>
                 <% end %>
-              </div>
             </div>
           <% end %>
         </div>
@@ -141,8 +143,8 @@
           <% @event.select_users_by_events(params[:id]).each do |event_user|%>
             <tr>
               <td>
-                <div class="avatar avatar-sm ">
-                  <i class="mdi mdi-account  mdi-48px"></i>
+                <div class="avatar avatar-xl">
+                   <%= image_tag event_user.user.avatar, class:'avatar-img rounded-circle' %>
                 </div>
               </td>
               <td><%= event_user.user.name %></td>

@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     @event_item = EventItem.new
     @event_items = Event.new.select_item_by_events(params[:id])
 
-    @items = Event.new.select_not_add_item(current_user.id,params[:id])
+    @items = Item.where(user_id: current_user.id)
   end
 
   # GET /events/new

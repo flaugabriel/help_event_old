@@ -5,37 +5,44 @@
 
         <div class="col-md-6 text-center mx-auto text-white p-b-30">
           <h1>Convites </h1>
-          <div class="form-dark">
-            <div class="input-group input-group-flush mb-3">
-              <input placeholder="Busque por convites" type="search"
-                class="form-control form-control-lg search form-control-prepended">
-              <div class="input-group-prepend">
-                <div class="input-group-text">
-                  <i class="mdi mdi-magnify"></i>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+        <div class="col-md-6 text-center mx-auto text-white p-b-30">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#customModal">
+            Enviar convite
+          </button>
         </div>
       </div>
     </div>
   </div>
-    <div class="container pull-up">
-      <div class="row  m-b-90">
+  <div class="container pull-up">
+    <div class="row  m-b-90">
       <% @invitations.each do |invitation|%>
-        <div class="col-lg-4 ">
+      <div class="col-lg-4 ">
         <%= link_to  invitation_path(invitation.id), class:'card shadow-lg guide-event ' do%>
-          <div class="card-body text-dark">
-            <h4 class="card-title">
-                <%= invitation.event.user.name %> quer convida voçê para este evento, <%= invitation.event.description%>
-            </h4>
-            <p>Data do evento: <%= invitation.event.data_event%>
-          </div>
-            <% end %>
-            </div>
-          <% end %>
-          </div>
+        <div class="card-body text-dark">
+          <h4 class="card-title">
+            <%= invitation.event.user.name %> quer convida voçê para este evento, <%= invitation.event.description%>
+          </h4>
+          <p>Data do evento: <%= invitation.event.data_event%>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+
+<div class="modal fade " data-keyboard="false" id="customModal" tabindex="-1" role="dialog"
+  aria-labelledby="customModal" aria-hidden="true">
+  <div class="modal-dialog  modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content m-t-80">
+      <div class="modal-body">
+        <div class="">
+          <h3 class="text-center">Envio de convites </h3>
+          <%= render 'form', invitation: @invitation %>
         </div>
       </div>
     </div>
-</section>
+  </div>
+</div>

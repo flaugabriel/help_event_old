@@ -10,9 +10,9 @@
             </div>
             <div class="media-body">
               <div class="opacity-75">Para,</div>
-              <h4 class="m-b-0"><%= @invitation.user.email %></h4>
+              <h4 class="m-b-0"><%= @invitation.user.name %></h4>
               <p class="opacity-75">
-                Convite de <%= @invitation.event.user.email %> <br>
+                Convite de <%= @invitation.event.user.name %> <br>
                 Data do Convite : <%= @invitation.created_at %>
               </p>
               </div>
@@ -58,14 +58,11 @@
                       <%= @invitation.user.name%><br>
                       <span class="h4 font-primary"> você foi convidado á participar do meu evento, <%= @invitation.event.description%> </span>
                       <br>
-                      Criado por <%= @invitation.event.user.email%> <br> criado em
+                      Criado por <%= @invitation.event.user.name%> <br> criado em
                       <%= @invitation.event.created_at%> ate o dia <%= @invitation.event.data_event%> <br>
 
 
                     </address>
-                  </div>
-                  <div class="col-md-6 text-right my-auto">
-                    <h1 class="font-primary">#<%= @invitation.id%></h1>
                   </div>
                 </div>
                 <div class="p-t-10 p-b-20">
