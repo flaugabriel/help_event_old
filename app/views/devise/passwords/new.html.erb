@@ -1,16 +1,45 @@
-<h2>Forgot your password?</h2>
+<main class="admin-main  bg-pattern">
+    <div class="container">
+        <div class="row m-h-100 ">
+            <div class="col-md-8 col-lg-4  m-auto">
+                <div class="card shadow-lg ">
+                    <div class="card-body ">
+                        <div class=" padding-box-2 ">
+                            <div class="text-center p-b-20 pull-up-sm">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+                                <div class="avatar avatar-lg">
+                                    <span class="avatar-title rounded-circle bg-pink"> <i
+                                                class="mdi mdi-key-change"></i> </span>
+                                </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+                            </div>
+                            <h3 class="text-center">Reseta senha</h3>
+                               <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                  <%= render "devise/shared/error_messages", resource: resource %>
+                  <div class="form-group">
+                    <%= f.label :email %><br />
+                      <div class="input-group input-group-flush mb-3">
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <span class=" mdi mdi-email "></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="small">
+                   Nós enviaremos um linnk para seu email registrado.
+                  </p>
+                  <div class="form-group">
+                    <%= f.submit "Envie para min instruções", class:'btn text-uppercase btn-block  btn-primary' %>
+                  </div>
+                <% end %>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
-<%= render "devise/shared/links" %>

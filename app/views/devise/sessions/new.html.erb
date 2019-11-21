@@ -1,26 +1,54 @@
-<h2>Log in</h2>
+  <main class="admin-main">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4 bg-white">
+          <div class="row align-align-items-center m-h-100">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+            <div class="mx-auto col-md-8" style="margin-top: 100px;">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+              <div class="p-b-20 text-center">
+                <p>
+                  <%= image_tag 'icone.png', width:'80' %>
+                </p>
+                <p class="admin-brand-content">
+                  HelpEvent
+                </p>
+              </div>
+                <h3 class="text-center p-b-20 fw-400">Login - &#x1F920; &#129299;<h3>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name), class:'needs-validation') do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+                <div class="form-row">
+
+                <div class="form-group floating-label col-md-12">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control', placeholder: 'Email' %>
+                </div>
+
+                <div class="form-group floating-label col-md-12">
+                  <%= f.password_field :password, autocomplete: "current-password", class:'form-control', placeholder: 'Senha'  %>
+                </div>
+
+                <% if devise_mapping.rememberable? %>
+                  <div class="form-group floating-label col-md-12">
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                  </div>
+                <% end %>
+
+                  <%= f.submit "Entrar", class:'btn btn-primary btn-block btn-lg' %>
+                      <br />
+                <%= render "devise/shared/links" %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 d-none d-md-block bg-cover" style="background-image: url('https://atmos.atomui.com/light/assets/img/auth.svg');">
+        </div>
+      </div>
     </div>
-  <% end %>
+  </main>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+

@@ -1,29 +1,52 @@
-<h2>Sign up</h2>
+<main class="admin-main">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4 bg-white">
+        <div class="row align-align-items-center m-h-100">
+          <div class="mx-auto col-md-8" style="margin-top: 100px;">
+            <div class="p-b-20 text-center">
+              <p>
+                <%= image_tag 'icone.png', width:'80' %>
+              </p>
+              <p class="admin-brand-content">
+                HelpEvent
+              </p>
+            </div>
+            <h3 class="text-center p-b-20 fw-400">Cadastre-se - &#x1F920; &#129299;<h3>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+              <div class="form-row">
+                <div class="form-group floating-label col-md-12">
+                  <%= f.email_field :name, autofocus: true, autocomplete: "email", class:'form-control', placeholder: 'Apelido'  %>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group floating-label col-md-12">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control', placeholder: 'Email'  %>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group floating-label col-md-12">
+                  <%= f.password_field :password, autocomplete: "new-password", class:'form-control', placeholder: 'Nova senha'  %>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group floating-label col-md-12">
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'form-control', placeholder: 'Repita sua nova senha'  %>
+                </div>
+              </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              <%= f.submit "Registra", class:'btn btn-primary btn-block btn-lg' %>
+                <br />
+              <%= render "devise/shared/links" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 d-none d-md-block bg-cover" style="background-image: url('https://atmos.atomui.com/light/assets/img/auth.svg');">
+      </div>
+    </div>
   </div>
+</main>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
