@@ -1,16 +1,13 @@
-
-
-
 <div class=" bg-event m-b-30 bg-stars">
  <div class="container">
     <div class="row">
       <div class="col-md-8 m-auto text-dark p-t-40 p-b-90">
         <h1><span class="js-greeting">Evento</span>, <%= @event.description %>.</h1>
         <p class="opacity-75">
-         Criado em <%= @event.created_at %> por <%= @event.user.name %>
+          Criado em <%= @event.created_at %> por <%= @event.user.name %>
         </p>
-         <p class="opacity-75">
-         Dia do evento <%= @event.data_event %>
+          <p class="opacity-75">
+          Dia do evento <%= @event.data_event %>
         </p>
       </div>
       <div class="col-md-4 m-auto text-white p-t-40 p-b-90">
@@ -20,7 +17,7 @@
               <button type="button" class="btn btn-lg m-b-15 ml-2 mr-2 btn-primary" data-toggle="modal" data-target="#slideRightModal">
                 Participantes
               </button>
-               <button type="button" class="btn btn-lg m-b-15 ml-2 mr-2  btn-white" data-toggle="modal" data-target="#new-item-event">
+                <button type="button" class="btn btn-lg m-b-15 ml-2 mr-2  btn-white" data-toggle="modal" data-target="#new-item-event">
                 <i class="mdi mdi-plus"></i> Item
               </button>
           </div>
