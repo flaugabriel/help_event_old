@@ -70,7 +70,7 @@ class EventsController < ApplicationController
   def permit_show
     return if Event.where(id: set_event.id, user_id: current_user).present?
 
-    flash[:error] = "Evento não encontrado!"
+    flash[:error] = 'Não altorizado!'
     redirect_to root_path
   end
 

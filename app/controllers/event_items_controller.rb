@@ -21,12 +21,22 @@ class EventItemsController < ApplicationController
   # GET /event_items/1/edit
   def charge_status
     @event_item = EventItem.where(id: params[:id], item_id: params[:item_id]).take
-    if @event_item.update(status: true)
-      flash[:success] = 'item comprado!'
-      redirect_to event_path(@event_item.event.id)
+    if @event_item.status
+      if @event_item.update(status: false)
+        flash[:success] = 'Item não comprado!'
+        redirect_to event_path(@event_item.event.id)
+      else
+        flash[:error] = @event_item.errors.full_messages.to_sentence
+        redirect_to event_path(@event_item.event.id)
+      end
     else
-      flash[:error] = @event_item.errors.full_messages.to_sentence
-      redirect_to event_path(@event_item.event.id)
+      if @event_item.update(status: true)
+        flash[:success] = 'Item comprado!'
+        redirect_to event_path(@event_item.event.id)
+      else
+        flash[:error] = @event_item.errors.full_messages.to_sentence
+        redirect_to event_path(@event_item.event.id)
+      end
     end
   end
 
