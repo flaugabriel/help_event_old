@@ -15,10 +15,10 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    permit_show
     @event_item = EventItem.new
     @event_items = Event.new.select_item_by_events(params[:id])
-
-    @items = Item.where(user_id: current_user.id)
+    @items = Event.new.get_item_not_inclued(params[:id],current_user)
   end
 
   # GET /events/new
@@ -66,6 +66,14 @@ class EventsController < ApplicationController
     flash[:error] = "Evento removido"
     redirect_to root_path
   end
+
+  def permit_show
+    return if Event.where(id: set_event.id, user_id: current_user).present?
+
+    flash[:error] = "Evento não encontrado!"
+    redirect_to root_path
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

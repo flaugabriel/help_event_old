@@ -2,7 +2,7 @@
  <div class="container">
     <div class="row">
       <div class="col-md-8 m-auto text-dark p-t-40 p-b-90">
-        <h1><span class="js-greeting">Evento</span>, <%= @event.description %>.</h1>
+        <h1><span class="js-greeting">Evento</span>, <%= @event.description.capitalize %>.</h1>
         <p class="opacity-75">
           Criado em <%= @event.created_at %> por <%= @event.user.name %>
         </p>
@@ -28,18 +28,16 @@
 </div>
 
 <div class="container pull-up">
-
-
   <div class="row mx-md-n2">
   <% @event_items.each do |event_item| %>
     <div class="col-lg-3 col-md-6 m-b-30">
       <div class="card card-hover">
         <div class="card-body">
           <div class="text-center ">
-              <h2 class="fw-600 p-t-20"><%= event_item.item.description %></h2>
+              <h2 class="fw-600 p-t-20"><%= event_item.item.description.capitalize %></h2>
               <div class="text-center">
                 <div class=" h3 fw-500">
-                  <p class="text-muted fw-600"><%= event_item.item.location %></p>
+                  <p class="text-muted fw-600"><%= event_item.item.location.capitalize %></p>
                 </div>
                 <div class=" h3 fw-500">
                   <p class="text-muted fw-600"><%= event_item.quantities %> quantidades</p>
@@ -62,6 +60,9 @@
                 <br>
                 <br>
                 <% if event_item.status %>
+                  <div class="col-md-12">
+                    <%= link_to '<i class="mdi mdi-backup-restore"></i>'.html_safe, charge_status_path(event_item,item_id: event_item.item.id), method: :patch , class:'btn btn-lg  m-b-15 ml-2 mr-2 btn-white col-md-10' %>
+                  </div>
                 <% else %>
                 <div class="row">
                   <div class="col-md-6">
@@ -85,36 +86,40 @@
   </div>
 </div>
 
-<%# #card_bar_item %>
 <div class="modal fade modal-slide-right" id="new-item-event" tabindex="-1" role="dialog" aria-labelledby="slideRightModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content-event">
       <div class="modal-header">
-        <h5 class="modal-title" id="slideRightModalLabel">Novo item</h5>
+        <div class="form-dark">
+          <div class="input-group input-group-flush mb-3">
+            <input placeholder="Busque por nome do item" type="search" class="form-control form-control-lg search form-control-prepended" id="search">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <i class="mdi mdi-magnify"></i>
+                </div>
+            </div>
+          </div>
+      </div>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <div class="modal-body">
         <div class="row m-b-90">
           <% @items.each do |item|%>
-           <div class="col-lg-6 col-md-10">
+           <div class="col-lg-6 col-md-10 text" >
               <%= form_with(model: @event_item, local: true) do |form| %>
                 <div class="card mt-3">
                 <%= form.hidden_field(:event_id, value: params[:id])%>
                 <%= form.hidden_field(:item_id , value: item.id)%>
                   <div class="card-body text-dark">
-                    <h4 class="card-title"><%= item.description %></h4>
+                    <h4 class="card-title"><%= item.description.capitalize %> <h4 class="text-success"><%= number_to_currency_br(item.value) %></h4></h4>
+                    <%= form.text_field :quantities, class:'form-control form-control-lg', placeholder: 'Quantidade' %>
                   </div>
-                  <div class="card-body text-success">
-                    <h4 class="card-title text-center"><%= number_to_currency_br(item.value) %></h4>
-                  </div>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><%= form.text_field :quantities, class:'form-control form-control-lg', placeholder: 'Quantidade' %></li>
-                  </ul>
                 </div>
                   <div class="text-center">
-                    <%= form.button '<i class="mdi mdi-plus"></i>'.html_safe,  class:'btn btn-success col-md-12' %>
+                    <%= form.button '<i class="mdi mdi-plus mdi-24px"></i>'.html_safe,  class:'btn btn-success col-md-12' %>
                   </div>
                 <% end %>
             </div>
