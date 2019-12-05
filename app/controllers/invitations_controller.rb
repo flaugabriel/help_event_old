@@ -1,4 +1,6 @@
 class InvitationsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_invitation, only: [:show, :edit, :update, :destroy]
 
   # GET /invitations

@@ -1,6 +1,4 @@
-class EventItemsController < ApplicationController
-  before_action :authenticate_user!
-
+class EventItemsController < Api::V1::BaseController
   before_action :set_event_item, only: [:show, :edit, :update, :destroy]
 
   # GET /event_items
