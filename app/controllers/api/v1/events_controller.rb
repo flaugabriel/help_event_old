@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class EventsController < Api::V1::BaseController
+    class EventsController < BaseController
       before_action :set_event, only: %i[show edit update destroy]
 
       # GET /events

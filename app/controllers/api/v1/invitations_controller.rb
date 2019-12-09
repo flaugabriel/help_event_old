@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class InvitationsController < Api::V1::BaseController
+    class InvitationsController < BaseController
       before_action :set_invitation, only: %i[show edit update destroy]
 
       # GET /invitations

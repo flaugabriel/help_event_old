@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class ItemsController < Api::V1::BaseController
+    class ItemsController < BaseController
       before_action :set_item, only: %i[show edit update destroy]
 
       # GET /items
