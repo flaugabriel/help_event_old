@@ -70,14 +70,14 @@ class EventsController < ApplicationController
   end
 
   def exit_event
-    event_user = EventUser.where(user_id: current_user, event_id: params[:id])
+    event_user = EventUser.where(user_id: current_user, event_id: params[:id]).take
     event_user.destroy
     flash[:error] = 'Saida do evento realizada!'
     redirect_to root_path
   end
 
   def permit_show
-    return if Event.where(id: set_event.id, user_id: current_user).present?
+    return if EventUser.where(event_id: set_event.id, user_id: current_user).present?
 
     flash[:error] = 'Não altorizado!'
     redirect_to root_path

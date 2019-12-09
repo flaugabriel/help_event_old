@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :items
   resources :events
   devise_for :users
+  delete 'exit_event/:id', to: 'events#exit_event', as: 'exit_event'
   get 'participating', to: 'events#participating', as: 'participating'
   get 'configs', to: 'user#configs', as: 'user_configs'
   patch 'configs', to: 'user#upload_avatar'

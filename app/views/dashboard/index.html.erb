@@ -52,8 +52,12 @@
                 <% end %>
               </td>
               <td class="text-center">
+                <% if all_event.event.user.id == current_user %>
                 <%= link_to '<i class="mdi mdi-eye"></i>'.html_safe, event_path(all_event.event_id), class:'btn btn-primary'%>
                 <%= link_to '<i class="mdi mdi-trash-can-outline"></i>'.html_safe, all_event.event, method: :delete, class:'btn btn-danger' %>
+                <% else %>
+                <%= link_to '<i class="mdi mdi-exit-run"></i>'.html_safe, exit_event_url(all_event.event), method: :delete, class:'btn btn-warning' %>
+                <% end %>
               </td>
             </tr>
           <% end %>
