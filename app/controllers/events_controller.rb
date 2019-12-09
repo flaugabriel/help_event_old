@@ -65,7 +65,14 @@ class EventsController < ApplicationController
   def destroy
     Event.new.delete_event(params[:id])
     @event.destroy
-    flash[:error] = "Evento removido"
+    flash[:error] = 'Evento removido'
+    redirect_to root_path
+  end
+
+  def exit_event
+    event_user = EventUser.where(user_id: current_user, event_id: params[:id])
+    event_user.destroy
+    flash[:error] = 'Saida do evento realizada!'
     redirect_to root_path
   end
 

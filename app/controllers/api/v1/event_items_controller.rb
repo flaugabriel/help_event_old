@@ -1,4 +1,6 @@
-class EventItemsController < Api::V1::BaseController
+module Api
+  module V1
+class EventItemsController < BaseController
   before_action :set_event_item, only: [:show, :edit, :update, :destroy]
 
   # GET /event_items
@@ -39,8 +41,6 @@ class EventItemsController < Api::V1::BaseController
       end
     end
   end
-
-
 
   # POST /event_items
   # POST /event_items.json
@@ -89,4 +89,6 @@ class EventItemsController < Api::V1::BaseController
     def event_item_params
       params.require(:event_item).permit(:total, :status, :event_id, :item_id, :quantities)
     end
+    end
+  end
 end
