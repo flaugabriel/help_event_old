@@ -1,13 +1,25 @@
-<div class="bg-dark">
+<div class="bg-dark ">
   <div class="container">
     <div class="row">
-      <div class="col-12 text-white p-t-40 p-b-90">
-        <h1>
+      <div class="col-md-4 text-white p-t-40 p-b-90">
+        <h1 class="text-center">
           Itens
         </h1>
+        </div>
+      <div class="col-md-4 text-white p-t-40 p-b-90">
         <p class="opacity-75 h3">
           Aqui voçê armazena seus itens.
         </p>
+        </div>
+        <div class="col-md-4 m-auto text-dark p-t-40 p-b-90">
+          <div class="card">
+            <div class="form-group col-12">
+              <p class="p-t-30 form-dark ">
+                <input type="search" placeholder="Busque por eventos" class="form-control text-dark form-control-lg" id="search">
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -26,7 +38,7 @@
         </thead>
         <tbody class="text-center">
           <% @items.each do |item| %>
-            <tr>
+            <tr class="text-center text">
               <td><%= item.description %></td>
               <td><%= number_to_currency_br(item.value) %></td>
               <td><%= item.location %></td>

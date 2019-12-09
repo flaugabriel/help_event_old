@@ -1,15 +1,18 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.where(user_id: current_user)
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+    permit_show
   end
 
   # GET /items/new
@@ -19,6 +22,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    permit_show
   end
 
   # POST /items
@@ -55,6 +59,14 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def permit_show
+    return if Item.where(id: set_item.id, user_id: current_user).present?
+
+    flash[:error] = 'Não altorizado!'
+    redirect_to root_path
+  end
+
 
   private
     def set_item

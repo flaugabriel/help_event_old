@@ -1,4 +1,6 @@
 class InvitationsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_invitation, only: [:show, :edit, :update, :destroy]
 
   # GET /invitations
@@ -25,6 +27,7 @@ class InvitationsController < ApplicationController
   end
 
   def show
+    permit_show
     @invitation_envites_users = Invitation.new.select_users_by_events(params[:id])
     Invitation.new.viewed_invitation(params[:id])
   end
@@ -36,6 +39,7 @@ class InvitationsController < ApplicationController
 
   # GET /invitations/1/edit
   def edit
+
   end
 
   # POST /invitations
@@ -73,6 +77,12 @@ class InvitationsController < ApplicationController
     redirect_to invitations_path
   end
 
+  def permit_show
+    return if Invitation.where(id: set_invitation.id, user_id: current_user)
+
+    flash[:error] = 'Não altorizado!'
+    redirect_to root_path
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_invitation

@@ -52,7 +52,7 @@ document.addEventListener("turbolinks:load", function () {
       showOptions: {
         direction: "down"
       }
-});
+    });
 
     $('.timedate').datetimepicker({
       format: 'dd/mm/yyyy hh:ii',
@@ -62,6 +62,13 @@ document.addEventListener("turbolinks:load", function () {
       showOptions: {
         direction: "down"
       }
+    }).focus;
+
+    $("#search").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $(".text").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
     });
   });
 });
@@ -96,4 +103,6 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
+
+
 

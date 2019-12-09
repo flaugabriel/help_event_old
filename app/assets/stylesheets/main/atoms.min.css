@@ -26,7 +26,6 @@
         2.22. media
         2.23. list-group
         2.24. close
-        2.25. toasts
         2.26. modal
         2.27. tooltip
         2.28. popover
@@ -5814,50 +5813,6 @@
         pointer-events: none
  }
 
- .toast {
-        font-size: .875rem;
-        overflow: hidden;
-        max-width: 350px;
-        opacity: 0;
-        border: 1px solid rgba(0, 0, 0, .1);
-        border-radius: .25rem;
-        background-color: rgba(255, 255, 255, .85);
-        background-clip: padding-box;
-        box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px)
- }
-
- .toast:not(:last-child) {
-        margin-bottom: .75rem
- }
-
- .toast.showing {
-        opacity: 1
- }
-
- .toast.show {
-        display: block;
-        opacity: 1
- }
-
- .toast.hide {
-        display: none
- }
-
- .toast-header {
-        display: flex;
-        padding: .25rem .75rem;
-        color: #95aac9;
-        border-bottom: 1px solid rgba(0, 0, 0, .05);
-        background-color: rgba(255, 255, 255, .85);
-        background-clip: padding-box;
-        align-items: center
- }
-
- .toast-body {
-        padding: .75rem
- }
 
  .modal-open {
         overflow: hidden
@@ -14036,18 +13991,8 @@
         background-color: transparent
  }
 
- .toast {
-        display: inline-block;
-        min-width: 300px;
-        padding: 20px 15px;
-        color: #fff;
-        background-color: #323232;
-        box-shadow: 0 18px 35px rgba(50, 50, 93, .1), -1px 0 15px rgba(0, 0, 0, .07)
- }
 
- .toast .close {
-        color: #fff !important
- }
+
 
  .apexcharts-canvas {
         height: 300px;

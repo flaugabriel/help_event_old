@@ -13,6 +13,15 @@ class Event < ApplicationRecord
     errors.add(:base, ' Voçê precisa inserir um apelido antes.')
   end
 
+  def get_item_not_inclued(event_id,current_user)
+    item_array = []
+    event_items = Event.new.select_item_by_events(event_id)
+    event_items.each do |item|
+      item_array << item.item_id
+    end
+    Item.where(user_id: current_user).where.not(id: item_array)
+  end
+
   def select_item_by_events(event_id)
     EventItem.where(event_id: event_id)
   end

@@ -1,12 +1,11 @@
-<div class="m-b-30 ">
+<div class="m-b-2">
     <div class="container">
         <div class="row">
             <div class="col-8 m-auto text-dark p-t-40 p-b-90">
-                </h1>
                 <div class="card">
                   <div class="form-group col-12">
                     <p class="p-t-30 form-dark ">
-                        <input type="search" placeholder="Busque por eventos" class=" form-control text-dark form-control-lg">
+                        <input type="search" placeholder="Busque por eventos" class="form-control text-dark form-control-lg" id="search">
                     </p>
                   </div>
                 </div>
@@ -14,32 +13,53 @@
         </div>
     </div>
 </div>
-
-<div class="container pull-up">
-  <div class="row m-b-90">
-    <% @events_all.each do |all_event|%>
-      <div class="col-lg-3 col-md-6">
-        <%= link_to event_path(all_event.event_id), class:'card shadow-lg guide-event m-b-10  bg-primary' do%>
-          <div class="card-body text-white">
-            <h4 class="card-title"><%= all_event.event.description%></h4>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Dia: <%= all_event.event.data_event%></li>
-            <li class="list-group-item">Itens: <%= all_event.event.select_item_by_events(all_event.event.id).count%></li>
-            <li class="list-group-item">
-            <div class="text-success h3 text-center">
-
-            <% if all_event.event.total.present?  %>
-              <%= number_to_currency_br(all_event.event.total)%>
-            <% else %>
-            R$ 00,00
-            <% end %>
-
-            </div></li>
-          </ul>
-        <% end %>
-          <%= link_to '<i class="mdi mdi-trash-can-outline"></i> Remover'.html_safe, all_event.event, method: :delete, class:'btn btn-lg  btn-danger col-md-12' %>
+<div class="col-md-12">
+  <div class="card m-b-10">
+    <div class="card-header">
+      <h5 class="m-b-0 h2">
+          <i class="mdi mdi-checkbox-intermediate"></i> Meus eventos
+      </h5>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-td-middle">
+        <thead class="text-center">
+        <tr class="h3">
+          <th>Evento</th>
+          <th>Data</th>
+          <th>Item</th>
+          <th>Total</th>
+          <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody class="text-center">
+          <% @events_all.each do |all_event|%>
+            <tr class="h4 text">
+              <td>
+                <%= all_event.event.description%>
+              </td>
+              <td>
+                <%= all_event.event.data_event%>
+              </td>
+              <td>
+                <%= all_event.event.select_item_by_events(all_event.event.id).count%>
+              </td>
+              <td>
+                <% if all_event.event.total.present?  %>
+                  <%= number_to_currency_br(all_event.event.total)%>
+                <% else %>
+                  R$ 00,00
+                <% end %>
+              </td>
+              <td class="text-center">
+                <%= link_to '<i class="mdi mdi-eye"></i>'.html_safe, event_path(all_event.event_id), class:'btn btn-primary'%>
+                <%= link_to '<i class="mdi mdi-trash-can-outline"></i>'.html_safe, all_event.event, method: :delete, class:'btn btn-danger' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+        </table>
       </div>
-    <% end %>
+    <div class="col-md-12"></div>
   </div>
 </div>
