@@ -10,7 +10,7 @@ class Event < ApplicationRecord
     namepresent = User.find(user_id)
     return if namepresent.name.present?
 
-    errors.add(:base, ' Voçê precisa inserir um apelido antes.')
+    errors.add(:base, ' você precisa inserir um apelido antes.')
   end
 
   def get_item_not_inclued(event_id,current_user)
