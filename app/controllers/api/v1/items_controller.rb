@@ -3,12 +3,16 @@
 module Api
   module V1
     class ItemsController < BaseController
+      include DeviseTokenAuth::Concerns::SetUserByToken
+
+      before_action :authenticate_user!
+
       before_action :set_item, only: %i[show edit update destroy]
 
       # GET /items
       # GET /items.json
       def index
-        items = Item.where(user_id: current_user)
+        items = Item.where(user_id: current_user.id)
         render json: {items: items}
       end
 

@@ -2,6 +2,11 @@
 module Api
   module V1
     class EventItemsController < BaseController
+      include DeviseTokenAuth::Concerns::SetUserByToken
+
+      before_action :authenticate_user!
+
+
       before_action :set_event_item, only: %i[show edit update destroy]
 
       # GET /event_items

@@ -3,6 +3,10 @@
 module Api
   module V1
     class InvitationsController < BaseController
+      include DeviseTokenAuth::Concerns::SetUserByToken
+
+      before_action :authenticate_user!
+
       before_action :set_invitation, only: %i[show edit update destroy]
 
       # GET /invitations
