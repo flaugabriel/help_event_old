@@ -39,7 +39,7 @@ module Api
         if @item.save
           render json: { status: 200 }
         else
-          render json: { status: @item.errors.full_messagers.to_sentence}
+          render json: { status: @item.errors.full_messagers.to_sentence }
         end
       end
 
