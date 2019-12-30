@@ -35,7 +35,7 @@ module Api
       # POST /items
       # POST /items.json
       def create
-        @item = Item.new(item_params.merge(user_id: current_user.id))
+        @item = Item.new(user_id: current_user.id, description: params[:description], location: params[:location], value: params[:value])
         if @item.save
           flash[:success] = 'Item criado!'
           redirect_to items_path
