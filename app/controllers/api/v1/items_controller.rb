@@ -35,7 +35,7 @@ module Api
       # POST /items
       # POST /items.json
       def create
-        @item = Item.new(item_params.merge(user_id: current_user.id))
+        @item = Item.new(description: params[:description], location: params[:location], value: params[:value], user_id: current_user.id)
         if @item.save
           render json: { status: 200 }
         else
