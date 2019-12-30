@@ -13,7 +13,7 @@ module Api
       # GET /items.json
       def index
         items = Item.where(user_id: current_user.id)
-        render json: {items: items}
+        render json: { items: items }
       end
 
       # GET /items/1
