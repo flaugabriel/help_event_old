@@ -35,13 +35,13 @@ module Api
       # POST /items
       # POST /items.json
       def create
-        @item = Item.new(user_id: current_user.id, description: params[:description], location: params[:location], value: params[:value])
+        puts '==========='
+        puts params.inspect
+        @item = Item.new(description: params[:description], location: params[:location], value: params[:value], user_id: current_user.id)
         if @item.save
-          flash[:success] = 'Item criado!'
-          redirect_to items_path
+          render json: { status: 200 }
         else
-          flash[:error] = @item.errors.full_messagers.to_sentence
-          redirect_to items_path
+          render json: { status: @item.errors.full_messagers.to_sentence}
         end
       end
 
