@@ -24,11 +24,23 @@ module Api
       # GET /events/1.json
       def show
         permit_show
-        @event_item = EventItem.new
+        data_array_event_item = []
+        data = []
         @event_items = Event.new.select_item_by_events(params[:id])
         @items = Event.new.get_item_not_inclued(params[:id], current_user)
-
-        render json: {event_items: @event_items , items: @items}
+        @event_items.each do |event_item|
+          print event_item.item.inspect
+          data = {
+            id: event_item.id,
+            description: event_item.item.description,
+            user: event_item.item.user.name,
+            value: event_item.item.value,
+            item_id: event_item.item.id,
+            status: event_item.status
+          }
+        data_array_event_item << data
+        end
+        render json: { event_items: data_array_event_item, items: @items }
       end
 
       # GET /events/new
