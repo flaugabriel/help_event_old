@@ -36,6 +36,7 @@ module Api
             user: event_item.item.user.name,
             value: event_item.item.value,
             item_id: event_item.item.id,
+            location: event_item.item.location,
             status: event_item.status
           }
         data_array_event_item << data
