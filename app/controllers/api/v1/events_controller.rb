@@ -43,11 +43,9 @@ module Api
         @event = Event.new(event_params.merge(user_id: current_user.id))
         if @event.save
           Event.new.event_create
-          flash[:success] = 'Evento criado!'
-          redirect_to root_path
+          render json: { status: 200 }
         else
-          flash[:error] = @event.errors.full_messages.to_sentence
-          redirect_to root_path
+          render json: { status: @event.errors.full_messagers.to_sentence }
         end
       end
 
