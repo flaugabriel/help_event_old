@@ -27,6 +27,8 @@ module Api
         @event_item = EventItem.new
         @event_items = Event.new.select_item_by_events(params[:id])
         @items = Event.new.get_item_not_inclued(params[:id], current_user)
+
+        render json: {event_items: @event_items , items: @items}
       end
 
       # GET /events/new
