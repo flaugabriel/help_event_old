@@ -10,6 +10,7 @@ module Api
         events_all = EventUser.where(user_id: current_user).all
         events_all.each do |events|
           data = {
+            id: events.event.id,
             description: events.event.description,
             created_at: events.event.created_at,
             user: events.event.user.name,
@@ -17,7 +18,7 @@ module Api
           }
         data_rray << data
         end
-        render json: {event: data_rray}
+        render json: { event: data_rray }
       end
     end
   end
