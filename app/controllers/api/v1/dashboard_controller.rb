@@ -14,7 +14,8 @@ module Api
             description: events.event.description,
             created_at: events.event.created_at,
             user: events.event.user.name,
-            total: events.event.total
+            total: events.event.total,
+            items: events.event.select_item_by_events(events.event.id).count
           }
         data_rray << data
         end
