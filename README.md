@@ -9,7 +9,11 @@ Este projeto foi feito em:
 * Postgres
 
 * Rails API 
+# API
 
-#Notas
+A api sera utilizada para que a aplicação mobile estaja integrada a plataforma. 
+
+# Notas
+
 Modulos de recupera sua senha esta sendo configurad.
 Ao convidar uma pessoa, não esta sendo enviado email termporariamente 
