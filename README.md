@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Esta aplicação tem como objetivo promover o controle e criação de eventos genericos como por exemplo uma ida no mercado ou uma festa de aniversario no qual o altor ira incluir produtos e convidar pessoas para incluir produtos onde todos os envolvidos sabera quem comprou oque é oque esta faltando a ser comprado na lista ate o dia do evento.
 
-Things you may want to cover:
+Este projeto foi feito em:
 
-* Ruby version
+* Ruby on rails
 
-* System dependencies
+* Postgres
 
-* Configuration
+* Rails API 
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#Notas
+Modulos de recupera sua senha esta sendo configurad.
+Ao convidar uma pessoa, não esta sendo enviado email termporariamente 
