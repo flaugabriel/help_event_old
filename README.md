@@ -11,7 +11,7 @@ Este projeto foi feito em:
 * Rails API 
 # API
 
-A api sera utilizada para que a aplicação mobile estaja integrada a plataforma. 
+A api sera utilizada para que a aplicação mobile integrada a plataforma. 
 
 # Notas
 
