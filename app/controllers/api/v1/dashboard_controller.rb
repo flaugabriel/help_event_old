@@ -19,7 +19,7 @@ module Api
           }
         data_rray << data
         end
-        render json: { event: data_rray }
+          render json: { event: data_rray }
       end
     end
   end
