@@ -17,3 +17,5 @@ A api sera utilizada para que a aplicação mobile integrada a plataforma.
 
 Modulos de recupera sua senha esta sendo configurad.
 Ao convidar uma pessoa, não esta sendo enviado email termporariamente 
+
+url do app https://helpevent.herokuapp.com/
